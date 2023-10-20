@@ -2,6 +2,7 @@ import { Button, styled } from "@mui/material";
 
 const BootstrapButton = styled(Button)({
   borderColor: "white",
+  lineHeight: "normal",
   color: "white",
   "&:hover": {
     borderColor: "#fc0d45",
