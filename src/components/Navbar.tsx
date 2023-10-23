@@ -1,15 +1,48 @@
+import { IconButton, List, ListItem, styled } from "@mui/material";
 import NavbarLink from "./NavbarLink";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import { FC } from "react";
 
-const Navbar = () => {
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-end",
+}));
+
+const Navbar: FC<{
+  handleDrawer: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ handleDrawer }) => {
+  const handleDrawerClose = () => {
+    handleDrawer(false);
+  };
   return (
-    <nav className="border border-[color:var(--border-color)] rounded-md w-fit text-lg bg-[#333a45]">
-      <ul className="grid gap-4 p-4">
-        <NavbarLink path="/" name="На главную" />
-        <NavbarLink path="/hotels" name="Все гостиницы" />
-        <NavbarLink path="/rooms" name="Поиск номера" />
-        <NavbarLink path="/users" name="Пользователи" />
-      </ul>
-    </nav>
+    <>
+      <DrawerHeader>
+        <IconButton onClick={handleDrawerClose}>
+          <ChevronLeftIcon
+            sx={{
+              color: "white",
+            }}
+          />
+        </IconButton>
+      </DrawerHeader>
+      <List>
+        <ListItem>
+          <NavbarLink path="/" name="На главную" />
+        </ListItem>
+        <ListItem>
+          <NavbarLink path="/hotels" name="Все гостиницы" />
+        </ListItem>
+        <ListItem>
+          <NavbarLink path="/rooms" name="Поиск номера" />
+        </ListItem>
+        <ListItem>
+          <NavbarLink path="/users" name="Пользователи" />
+        </ListItem>
+      </List>
+    </>
   );
 };
 

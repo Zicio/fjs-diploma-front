@@ -1,20 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   font-family: Roboto, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color: #f5f5f5;
-  background-color: black;
-  --text-color: #fc0d45;
-  --border-color: #4b5563;
   text-rendering: optimizeLegibility;
+  --text-color: white;
 }
 
-/* .active-link {
-  @apply text-[color:var(--text-color)] opacity-50;
-} */
+a {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 10px;
+}
+
+.active-link {
+  color: red;
+  opacity: 0.7;
+  cursor: default;
+}

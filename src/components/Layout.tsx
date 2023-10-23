@@ -1,36 +1,72 @@
 import { Link, Outlet } from "react-router-dom";
-import AuthProfileButton from "./AuthProfileButton";
 import {
   AppBar,
-  Avatar,
   Box,
   Container,
+  CssBaseline,
+  Drawer,
   IconButton,
   Menu,
   MenuItem,
   ThemeProvider,
   Toolbar,
-  Typography,
   createTheme,
 } from "@mui/material";
-import Navbar from "./Navbar";
 import { AccountCircle } from "@mui/icons-material";
+import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
-import { green, lime } from "@mui/material/colors";
+import { blueGrey, red } from "@mui/material/colors";
+import Navbar from "./Navbar";
 
 const theme = createTheme({
   palette: {
-    primary: lime,
-    secondary: green,
+    primary: blueGrey,
+    secondary: red,
+    background: {
+      default: "black",
+      paper: "#333a45",
+    },
   },
   components: {
     MuiMenu: {
       styleOverrides: {
         paper: {
-          backgroundColor: "#333a45",
           color: "white",
-          borderWidth: "1px",
-          borderColor: "white",
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: "gray",
+          },
+        },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          color: "white",
+        },
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+          "&:hover": {
+            backgroundColor: "gray",
+          },
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: "gray",
+          },
         },
       },
     },
@@ -40,6 +76,7 @@ const theme = createTheme({
 const Layout = () => {
   const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -48,14 +85,28 @@ const Layout = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleDrawerOpen = () => {
+    setIsDrawerOpen(true);
+  };
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <AppBar position="static">
         <Toolbar
           sx={{
             justifyContent: "space-between",
           }}
         >
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            disabled={isDrawerOpen}
+          >
+            <MenuIcon />
+          </IconButton>
           <Link to="/">
             <Box
               sx={{
@@ -63,9 +114,6 @@ const Layout = () => {
                 height: 50,
                 backgroundSize: "cover",
                 backgroundImage: "url('/logo.jpg')",
-                "&:hover": {
-                  backgroundImage: "url('/logo_hover.jpg')",
-                },
               }}
             ></Box>
           </Link>
@@ -92,22 +140,19 @@ const Layout = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem
-                  sx={{
-                    "&:hover": {
-                      backgroundColor: "red",
-                    },
-                  }}
-                  onClick={handleClose}
-                >
-                  Профиль
-                </MenuItem>
+                <MenuItem onClick={handleClose}>Профиль</MenuItem>
                 <MenuItem onClick={handleClose}>Выйти</MenuItem>
               </Menu>
             </Box>
           )}
         </Toolbar>
       </AppBar>
+      <Drawer variant="persistent" open={isDrawerOpen}>
+        <Navbar handleDrawer={setIsDrawerOpen} />
+      </Drawer>
+      <Container>
+        <Outlet />
+      </Container>
     </ThemeProvider>
   );
 };
