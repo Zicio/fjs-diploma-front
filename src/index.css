@@ -4,17 +4,10 @@
   line-height: 1.5;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  --text-color: white;
-}
-
-a {
-  color: var(--text-color);
-  text-decoration: none;
-  padding: 10px;
 }
 
 .active-link {
-  color: red;
-  opacity: 0.7;
+  opacity: 0.4;
   cursor: default;
+  pointer-events: none;
 }

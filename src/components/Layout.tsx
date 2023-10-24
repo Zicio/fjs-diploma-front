@@ -10,62 +10,25 @@ import {
   MenuItem,
   ThemeProvider,
   Toolbar,
+  Typography,
   createTheme,
 } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
+import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import { useState } from "react";
-import { blueGrey, red } from "@mui/material/colors";
 import Navbar from "./Navbar";
 
 const theme = createTheme({
   palette: {
-    primary: blueGrey,
-    secondary: red,
-    background: {
-      default: "black",
-      paper: "#333a45",
-    },
+    mode: "dark",
   },
   components: {
-    MuiMenu: {
-      styleOverrides: {
-        paper: {
-          color: "white",
-        },
-      },
-    },
-    MuiMenuItem: {
-      styleOverrides: {
-        root: {
-          "&:hover": {
-            backgroundColor: "gray",
-          },
-        },
-      },
-    },
-    MuiDrawer: {
-      styleOverrides: {
-        paper: {
-          color: "white",
-        },
-      },
-    },
     MuiListItem: {
       styleOverrides: {
         root: {
-          padding: 0,
           "&:hover": {
-            backgroundColor: "gray",
-          },
-        },
-      },
-    },
-    MuiIconButton: {
-      styleOverrides: {
-        root: {
-          "&:hover": {
-            backgroundColor: "gray",
+            backgroundColor: "#ce93d8",
           },
         },
       },
@@ -96,6 +59,7 @@ const Layout = () => {
         <Toolbar
           sx={{
             justifyContent: "space-between",
+            borderBottom: "1px solid #c2e0ff14",
           }}
         >
           <IconButton
@@ -107,16 +71,34 @@ const Layout = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Link to="/">
-            <Box
+          <Box
+            component={"div"}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <IconButton
+              component={Link}
+              to={"/"}
+              color="secondary"
+              disableRipple
+            >
+              <ElectricBoltIcon fontSize="large" />
+            </IconButton>
+            <Typography
+              color="secondary"
               sx={{
-                width: 50,
-                height: 50,
-                backgroundSize: "cover",
-                backgroundImage: "url('/logo.jpg')",
+                paddingLeft: "8px",
+                borderLeft: "1px solid gray",
               }}
-            ></Box>
-          </Link>
+            >
+              Farada
+              <br />
+              Бронирование отелей
+            </Typography>
+          </Box>
           {auth && (
             <Box component={"div"}>
               <IconButton

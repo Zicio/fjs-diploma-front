@@ -1,4 +1,4 @@
-import { IconButton, List, ListItem, styled } from "@mui/material";
+import { IconButton, List, styled } from "@mui/material";
 import NavbarLink from "./NavbarLink";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { FC } from "react";
@@ -21,27 +21,17 @@ const Navbar: FC<{
     <>
       <DrawerHeader>
         <IconButton onClick={handleDrawerClose}>
-          <ChevronLeftIcon
-            sx={{
-              color: "white",
-            }}
-          />
+          <ChevronLeftIcon />
         </IconButton>
       </DrawerHeader>
-      <List>
-        <ListItem>
+      <nav>
+        <List>
           <NavbarLink path="/" name="На главную" />
-        </ListItem>
-        <ListItem>
           <NavbarLink path="/hotels" name="Все гостиницы" />
-        </ListItem>
-        <ListItem>
           <NavbarLink path="/rooms" name="Поиск номера" />
-        </ListItem>
-        <ListItem>
           <NavbarLink path="/users" name="Пользователи" />
-        </ListItem>
-      </List>
+        </List>
+      </nav>
     </>
   );
 };
