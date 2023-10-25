@@ -19,23 +19,6 @@ import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import { useState } from "react";
 import Navbar from "./Navbar";
 
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-  components: {
-    MuiListItem: {
-      styleOverrides: {
-        root: {
-          "&:hover": {
-            backgroundColor: "#ce93d8",
-          },
-        },
-      },
-    },
-  },
-});
-
 const Layout = () => {
   const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -52,8 +35,9 @@ const Layout = () => {
   const handleDrawerOpen = () => {
     setIsDrawerOpen(true);
   };
+
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <CssBaseline />
       <AppBar position="static">
         <Toolbar
@@ -72,7 +56,7 @@ const Layout = () => {
             <MenuIcon />
           </IconButton>
           <Box
-            component={"div"}
+            component="div"
             sx={{
               display: "flex",
               alignItems: "center",
@@ -87,17 +71,35 @@ const Layout = () => {
             >
               <ElectricBoltIcon fontSize="large" />
             </IconButton>
-            <Typography
-              color="secondary"
+            <Box
+              component="div"
               sx={{
+                margin: "8px 0px",
                 paddingLeft: "8px",
-                borderLeft: "1px solid gray",
+                borderLeft: "1px solid #c2e0ff14",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
               }}
             >
-              Farada
-              <br />
-              Бронирование отелей
-            </Typography>
+              <Typography
+                color="secondary"
+                variant="h4"
+                component="h1"
+                fontFamily="cursive"
+              >
+                Farada
+              </Typography>
+              <Typography
+                color="secondary"
+                variant="caption"
+                sx={{
+                  opacity: 0.6,
+                }}
+              >
+                Бронирование отелей
+              </Typography>
+            </Box>
           </Box>
           {auth && (
             <Box component={"div"}>
@@ -132,10 +134,14 @@ const Layout = () => {
       <Drawer variant="persistent" open={isDrawerOpen}>
         <Navbar handleDrawer={setIsDrawerOpen} />
       </Drawer>
-      <Container>
+      <Container
+        sx={{
+          paddingTop: "50px",
+        }}
+      >
         <Outlet />
       </Container>
-    </ThemeProvider>
+    </>
   );
 };
 
