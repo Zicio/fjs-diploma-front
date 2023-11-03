@@ -48,7 +48,6 @@ const Layout = () => {
         >
           <IconButton
             color="inherit"
-            aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
             disabled={isDrawerOpen}

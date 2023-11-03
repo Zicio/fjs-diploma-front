@@ -11,3 +11,13 @@
   cursor: default;
   pointer-events: none;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: #272727;
+}

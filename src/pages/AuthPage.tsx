@@ -1,4 +1,12 @@
+import SignIn from "../components/SignIn";
+import SignUp from "../components/SignUp";
+
 const AuthPage = () => {
-  return <div>AuthPage</div>;
+  return (
+    <>
+      <SignUp />
+      {/* <SignIn /> */}
+    </>
+  );
 };
 export default AuthPage;
